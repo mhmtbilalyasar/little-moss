@@ -1,0 +1,17 @@
+extends Area2D
+## Bolum cikisi. "next_level" bos birakilirsa ana menuye doner.
+
+@export_file("*.tscn") var next_level := ""
+
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if not body.has_method("hurt"):
+		return
+	if next_level == "":
+		get_tree().change_scene_to_file.call_deferred("res://scenes/main_menu.tscn")
+	else:
+		get_tree().change_scene_to_file.call_deferred(next_level)

@@ -1,0 +1,196 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/background.tscn" id="2_bg"]
+[ext_resource type="SpriteFrames" path="res://art/player_frames.tres" id="3_frames"]
+[ext_resource type="Theme" path="res://ui/theme.tres" id="4_theme"]
+[ext_resource type="Texture2D" path="res://art/ui_title.png" id="5_title"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_theme")
+script = ExtResource("1_script")
+
+[node name="Background" parent="." instance=ExtResource("2_bg")]
+
+[node name="Menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -118.0
+offset_right = 90.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="TextureRect" parent="Menu"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+texture = ExtResource("5_title")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Mascot" type="Control" parent="Menu"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Menu/Mascot"]
+position = Vector2(90, 36)
+scale = Vector2(4, 4)
+sprite_frames = ExtResource("3_frames")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="PlayButton" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Oyna"
+
+[node name="SettingsButton" type="Button" parent="Menu"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Ayarlar"
+
+[node name="Levels" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -128.0
+offset_right = 228.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="Levels"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Tabs" type="HBoxContainer" parent="Levels/Box"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Theme1" type="Button" parent="Levels/Box/Tabs"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+text = "1  Yosun Ormanı"
+
+[node name="Theme2" type="Button" parent="Levels/Box/Tabs"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+disabled = true
+text = "2  Yakında"
+
+[node name="Theme3" type="Button" parent="Levels/Box/Tabs"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+disabled = true
+text = "3  Yakında"
+
+[node name="Theme4" type="Button" parent="Levels/Box/Tabs"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+disabled = true
+text = "4  Yakında"
+
+[node name="Theme5" type="Button" parent="Levels/Box/Tabs"]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 11
+disabled = true
+text = "5  Yakında"
+
+[node name="ThemeName" type="Label" parent="Levels/Box"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.96, 0.78, 1)
+text = "Fısıldayan Yosun Ormanı  -  20 Bölüm"
+horizontal_alignment = 1
+
+[node name="Grid" type="GridContainer" parent="Levels/Box"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 5
+columns = 5
+
+[node name="BackButton" type="Button" parent="Levels/Box"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Geri"
+
+[node name="Settings" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -100.0
+offset_right = 130.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Box" type="VBoxContainer" parent="Settings"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Settings/Box"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Ayarlar"
+horizontal_alignment = 1
+
+[node name="MusicLabel" type="Label" parent="Settings/Box"]
+layout_mode = 2
+text = "Müzik"
+
+[node name="Music" type="HSlider" parent="Settings/Box"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="SfxLabel" type="Label" parent="Settings/Box"]
+layout_mode = 2
+text = "Ses efektleri"
+
+[node name="Sfx" type="HSlider" parent="Settings/Box"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 0.8
+
+[node name="BackButton" type="Button" parent="Settings/Box"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "Geri"

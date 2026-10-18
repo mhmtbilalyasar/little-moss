@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/crumble.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://art/crumble.png" id="2_tex"]
+
+[sub_resource type="RectangleShape2D" id="Shape_floor"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="Shape_trigger"]
+size = Vector2(12, 4)
+
+[node name="Crumble" type="StaticBody2D"]
+collision_layer = 1
+collision_mask = 0
+script = ExtResource("1_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("Shape_floor")
+one_way_collision = true
+
+[node name="Trigger" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+position = Vector2(0, -9)
+shape = SubResource("Shape_trigger")
