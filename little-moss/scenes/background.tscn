@@ -1,0 +1,105 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/light_rays.gd" id="1_rays"]
+[ext_resource type="Texture2D" path="res://art/bg_sky.png" id="2_sky"]
+[ext_resource type="Texture2D" path="res://art/bg_trees_far.png" id="3_far"]
+[ext_resource type="Texture2D" path="res://art/bg_trees_mid.png" id="4_mid"]
+[ext_resource type="Texture2D" path="res://art/bg_trees_near.png" id="5_near"]
+[ext_resource type="Texture2D" path="res://art/bg_rays_a.png" id="6_rays_a"]
+[ext_resource type="Texture2D" path="res://art/bg_rays_b.png" id="7_rays_b"]
+
+[sub_resource type="CanvasItemMaterial" id="Mat_add"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_fade"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(1, 0.94, 0.7, 0, 1, 0.94, 0.7, 0.8, 1, 0.94, 0.7, 0.8, 1, 0.94, 0.7, 0)
+
+[node name="Background" type="Node"]
+
+[node name="SkyLayer" type="CanvasLayer" parent="."]
+layer = -30
+
+[node name="Sky" type="TextureRect" parent="SkyLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_sky")
+expand_mode = 1
+
+[node name="Parallax" type="ParallaxBackground" parent="."]
+layer = -20
+
+[node name="Far" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2(0.06, 0.02)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Image" type="Sprite2D" parent="Parallax/Far"]
+texture = ExtResource("3_far")
+centered = false
+
+[node name="Mid" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2(0.16, 0.05)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Image" type="Sprite2D" parent="Parallax/Mid"]
+texture = ExtResource("4_mid")
+centered = false
+
+[node name="Near" type="ParallaxLayer" parent="Parallax"]
+motion_scale = Vector2(0.32, 0.08)
+motion_mirroring = Vector2(512, 0)
+
+[node name="Image" type="Sprite2D" parent="Parallax/Near"]
+texture = ExtResource("5_near")
+centered = false
+
+[node name="LightLayer" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="RaysA" type="TextureRect" parent="LightLayer"]
+material = SubResource("Mat_add")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_rays_a")
+expand_mode = 1
+script = ExtResource("1_rays")
+
+[node name="RaysB" type="TextureRect" parent="LightLayer"]
+material = SubResource("Mat_add")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_rays_b")
+expand_mode = 1
+script = ExtResource("1_rays")
+speed = 0.45
+phase = 2.4
+strength = 0.7
+
+[node name="Motes" type="CPUParticles2D" parent="LightLayer"]
+material = SubResource("Mat_add")
+position = Vector2(300, 140)
+amount = 48
+lifetime = 9.0
+preprocess = 9.0
+emission_shape = 3
+emission_rect_extents = Vector2(340, 150)
+direction = Vector2(-0.3, -1)
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 3.0
+initial_velocity_max = 8.0
+scale_amount_min = 1.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_fade")

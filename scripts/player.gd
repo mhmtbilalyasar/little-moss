@@ -21,8 +21,9 @@ var invincible := 0.0
 var _coyote := 0.0
 var _buffer := 0.0
 var _level_bottom := 99999.0
+var _tween: Tween
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
 
 
@@ -64,10 +65,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_velocity
 		_buffer = 0.0
 		_coyote = 0.0
+		_squash(Vector2(0.8, 1.2))
 	if jump_released and velocity.y < 0.0:
 		velocity.y *= 0.45
 
+	var was_on_floor := is_on_floor()
 	move_and_slide()
+	if is_on_floor() and not was_on_floor:
+		_squash(Vector2(1.25, 0.8))   # yere inince ezilme efekti
+	_update_animation()
 
 	# Hasar sonrasi yanip sonme
 	invincible = maxf(0.0, invincible - delta)
@@ -102,3 +108,23 @@ func respawn() -> void:
 func bounce(power: float) -> void:
 	velocity.y = power
 	_coyote = 0.0
+
+
+func _update_animation() -> void:
+	var anim := "idle"
+	if invincible > 0.95:
+		anim = "hurt"
+	elif not is_on_floor():
+		anim = "jump" if velocity.y < 0.0 else "fall"
+	elif absf(velocity.x) > 20.0:
+		anim = "run"
+	if sprite.animation != anim:
+		sprite.play(anim)
+
+
+func _squash(amount: Vector2) -> void:
+	if _tween:
+		_tween.kill()
+	sprite.scale = amount
+	_tween = create_tween()
+	_tween.tween_property(sprite, "scale", Vector2.ONE, 0.14)

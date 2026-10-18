@@ -35,7 +35,7 @@ position = Vector2(328, 184)
 
 [node name="Exit1" parent="Things" instance=ExtResource("7_exit")]
 position = Vector2(1800, 200)
-next_level = "res://levels/level_1.tscn"
+next_level = "res://levels/level_4.tscn"
 
 [node name="Mushroom1" parent="Things" instance=ExtResource("8_mushroom")]
 position = Vector2(1176, 216)
