@@ -1,15 +1,15 @@
-[gd_resource type="Theme" load_steps=8 format=3]
+[gd_resource type="Theme" format=3 uid="uid://b3vl14f3vbnpg"]
 
-[ext_resource type="Texture2D" path="res://art/ui_button.png" id="1_btn"]
-[ext_resource type="Texture2D" path="res://art/ui_panel.png" id="2_panel"]
+[ext_resource type="Texture2D" uid="uid://cjw8h8aecv7w8" path="res://art/ui_button.png" id="1_btn"]
+[ext_resource type="Texture2D" uid="uid://b0qqeaktc1hsq" path="res://art/ui_panel.png" id="2_panel"]
 
-[sub_resource type="StyleBoxTexture" id="S_normal"]
+[sub_resource type="StyleBoxTexture" id="S_disabled"]
 texture = ExtResource("1_btn")
 texture_margin_left = 6.0
 texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
-region_rect = Rect2(0, 0, 24, 24)
+region_rect = Rect2(72, 0, 24, 24)
 
 [sub_resource type="StyleBoxTexture" id="S_hover"]
 texture = ExtResource("1_btn")
@@ -19,6 +19,14 @@ texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 region_rect = Rect2(24, 0, 24, 24)
 
+[sub_resource type="StyleBoxTexture" id="S_normal"]
+texture = ExtResource("1_btn")
+texture_margin_left = 6.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(0, 0, 24, 24)
+
 [sub_resource type="StyleBoxTexture" id="S_pressed"]
 texture = ExtResource("1_btn")
 texture_margin_left = 6.0
@@ -26,14 +34,6 @@ texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
 region_rect = Rect2(48, 0, 24, 24)
-
-[sub_resource type="StyleBoxTexture" id="S_disabled"]
-texture = ExtResource("1_btn")
-texture_margin_left = 6.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 6.0
-region_rect = Rect2(72, 0, 24, 24)
 
 [sub_resource type="StyleBoxTexture" id="S_panel"]
 content_margin_left = 14.0
